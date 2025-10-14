@@ -1,0 +1,29 @@
+.dicas {
+  display: grid;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.dica {
+  background-color: #e8f0fe;
+  border-left: 6px solid #0d6efd;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+}
+
+.dica h3 {
+  color: #0d6efd;
+  margin-bottom: 8px;
+}
+
+.dica p {
+  font-size: 1em;
+  color: #333;
+}
+
+.map-info {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 0.95em;
+}
