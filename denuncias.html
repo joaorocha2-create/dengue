@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Denúncias | Dengue: Proliferação do Mosquito</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Dengue: Proliferação do Mosquito</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="mapas.html">Mapas</a></li>
+        <li><a href="conscientizacao.html">Conscientização</a></li>
+        <li><a href="denuncias.html" class="active">Denúncias</a></li>
+        <li><a href="contatos.html">Contatos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="section">
+    <h2>Denuncie Focos do Mosquito</h2>
+    <p>
+      A participação da população é fundamental para o controle da dengue.  
+      Se você identificar locais com possível acúmulo de água ou suspeita de criadouros do mosquito
+      <strong>Aedes aegypti</strong>, faça uma denúncia para que as autoridades de saúde possam agir rapidamente.
+    </p>
+
+    <div class="dica denuncia-info">
+      <h3>Como denunciar:</h3>
+      <ul>
+        <li>Entre em contato com a Vigilância Sanitária do seu município;</li>
+        <li>Informe o endereço completo e, se possível, envie uma foto do local;</li>
+        <li>Você também pode utilizar o telefone ou e-mail abaixo.</li>
+      </ul>
+    </div>
+
+    <form class="form-denuncia">
+      <h3>Formulário de Denúncia</h3>
+
+      <label for="nome">Nome (opcional):</label>
+      <input type="text" id="nome" name="nome" placeholder="Digite seu nome">
+
+      <label for="endereco">Endereço do foco:</label>
+      <input type="text" id="endereco" name="endereco" required placeholder="Rua, número, bairro...">
+
+      <label for="descricao">Descrição do local:</label>
+      <textarea id="descricao" name="descricao" rows="4" required placeholder="Descreva o problema encontrado..."></textarea>
+
+      <label for="foto">Enviar foto (opcional):</label>
+      <input type="file" id="foto" name="foto" accept="image/*">
+
+      <button type="submit">Enviar denúncia</button>
+    </form>
+
+    <p class="map-info">
+      📞 <strong>Telefone:</strong> (64) 4002-0922<br>
+      📧 <strong>E-mail:</strong> <a href="mailto:proliferacaodadengue@gmail.com">proliferacaodadengue@gmail.com</a>
+    </p>
+  </main>
+
+  <footer>
+    <h2>Contatos</h2>
+    <p><strong>Telefone:</strong> (64) 4002-0922</p>
+    <p><strong>E-mail:</strong> proliferacaodadengue@gmail.com</p>
+    <p class="copy">&copy; 2025 | Projeto de Conscientização sobre Dengue</p>
+  </footer>
+
+</body>
+</html>
