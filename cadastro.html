@@ -37,7 +37,7 @@
       </div>
 
       <div class="field">
-        <label for="email">E‑mail</label>
+        <label for="email">E-mail</label>
         <input id="email" name="email" type="email" autocomplete="email" required placeholder="seu@email.com">
         <div id="emailError" class="error" aria-live="polite"></div>
       </div>
@@ -70,7 +70,6 @@
     const nameError = document.getElementById('nameError');
     const emailError = document.getElementById('emailError');
     const pwError = document.getElementById('passwordError');
-    const result = document.getElementById('result');
     const toggle = document.getElementById('togglePw');
     const resetBtn = document.getElementById('resetBtn');
 
@@ -86,8 +85,6 @@
       nameError.textContent = '';
       emailError.textContent = '';
       pwError.textContent = '';
-      result.textContent = '';
-      result.className = '';
     });
 
     function validate() {
@@ -102,7 +99,7 @@
       }
 
       if (!emailInput.checkValidity()) {
-        emailError.textContent = 'Por favor informe um e‑mail válido.';
+        emailError.textContent = 'Por favor informe um e-mail válido.';
         valid = false;
       }
 
@@ -118,18 +115,8 @@
       e.preventDefault();
       if (!validate()) return;
 
-      // Exemplo de envio local — aqui você chamaria sua API
-      const payload = {
-        name: nameInput.value.trim(),
-        email: emailInput.value.trim(),
-        password: pwInput.value
-      };
-
-      // Simula requisição
-      result.className = 'success';
-      result.textContent = 'Cadastro realizado com sucesso (simulação). Confira no console.';
-      console.log('Payload de cadastro:', payload);
-
+      // Redireciona para index.html após cadastro válido
+      window.location.href = 'index.html';
     });
   </script>
 </body>
