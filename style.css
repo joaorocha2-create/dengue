@@ -1,53 +1,35 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Arial, sans-serif;
-  }
-  
-  body {
-    background-color: #f7fafc;
-    color: #333;
-    line-height: 1.6;
-  }
-  
-.logo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-
-.logo {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
-}
-
-header h1 {
-  font-size: 1.8em;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background-color: #f7fafc;
+  color: #333;
+  line-height: 1.6;
 }
 
 header {
   background-color: #0d6efd;
   color: white;
-  padding: 15px 10px;
+  padding: 20px;
   text-align: center;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-/* Mantém o menu bonito abaixo da logo */
+header h1 {
+  margin-bottom: 10px;
+  font-size: 1.8em;
+}
+
 nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 15px;
-  margin-top: 10px;
 }
 
 nav a {
@@ -61,52 +43,45 @@ nav a:hover {
   text-decoration: underline;
 }
 
-nav a.active {
-  text-decoration: underline;
-  color: #ffeb3b;
+.section {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: auto;
 }
 
-  
-  .section {
-    padding: 40px 20px;
-    max-width: 800px;
-    margin: auto;
-  }
-  
-  .section h2 {
-    color: #0d6efd;
-    margin-bottom: 15px;
-  }
-  
-  .section p, .section li {
-    font-size: 1.05em;
-  }
-  
-  ol {
-    margin-left: 20px;
-    padding-left: 10px;
-  }
-  
-  footer {
-    background-color: #0d6efd;
-    color: white;
-    text-align: center;
-    padding: 30px 15px;
-    margin-top: 30px;
-  }
-  
-  footer a {
-    color: #fff2b3;
-    text-decoration: none;
-  }
-  
-  footer a:hover {
-    text-decoration: underline;
-  }
-  
-  .copy {
-    margin-top: 15px;
-    font-size: 0.9em;
-    opacity: 0.8;
-  }
-  
+.section h2 {
+  color: #0d6efd;
+  margin-bottom: 15px;
+}
+
+.section p, .section li {
+  font-size: 1.05em;
+}
+
+ol {
+  margin-left: 20px;
+  padding-left: 10px;
+}
+
+footer {
+  background-color: #0d6efd;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+  margin-top: 30px;
+}
+
+footer a {
+  color: #fff2b3;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.copy {
+  margin-top: 15px;
+  font-size: 0.9em;
+  opacity: 0.8;
+}
