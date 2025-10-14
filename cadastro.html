@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cadastro — Meu Site</title>
+  <style>
+    :root{--bg:#f7fafc;--card:#ffffff;--accent:#2563eb;--muted:#6b7280}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial; background:var(--bg); color:#111;margin:0;padding:40px;display:flex;align-items:center;justify-content:center;min-height:100vh}
+    .card{background:var(--card);padding:28px;border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.06);width:100%;max-width:420px}
+    h1{margin:0 0 8px;font-size:20px}
+    p.lead{margin:0 0 18px;color:var(--muted);font-size:14px}
+    label{display:block;font-size:13px;margin-bottom:6px}
+    input[type="text"],input[type="email"],input[type="password"]{width:100%;padding:10px 12px;border:1px solid #e6e9ee;border-radius:8px;font-size:14px}
+    .field{margin-bottom:14px}
+    .actions{display:flex;gap:10px;align-items:center;margin-top:6px}
+    button{background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+    button[type="button"]{background:#e6eefc;color:var(--accent);font-weight:600}
+    .muted{color:var(--muted);font-size:13px}
+    .error{color:#b91c1c;font-size:13px;margin-top:6px}
+    .success{background:#ecfdf5;border:1px solid #bbf7d0;padding:10px;border-radius:8px;color:#065f46;margin-top:10px}
+    .pw-row{display:flex;gap:8px;align-items:center}
+    .pw-toggle{background:transparent;border:1px solid #e6e9ee;padding:8px;border-radius:8px;cursor:pointer}
+    small{display:block;margin-top:6px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <h1>Crie sua conta</h1>
+    <p class="lead">Preencha os campos abaixo para se cadastrar.</p>
+
+    <form id="signupForm" action="#" method="post" novalidate>
+      <div class="field">
+        <label for="name">Nome completo</label>
+        <input id="name" name="name" type="text" autocomplete="name" required minlength="2" placeholder="Ex.: João Silva">
+        <div id="nameError" class="error" aria-live="polite"></div>
+      </div>
+
+      <div class="field">
+        <label for="email">E‑mail</label>
+        <input id="email" name="email" type="email" autocomplete="email" required placeholder="seu@email.com">
+        <div id="emailError" class="error" aria-live="polite"></div>
+      </div>
+
+      <div class="field">
+        <label for="password">Senha</label>
+        <div class="pw-row">
+          <input id="password" name="password" type="password" autocomplete="new-password" required minlength="6" placeholder="Mínimo 6 caracteres">
+          <button type="button" id="togglePw" class="pw-toggle" aria-pressed="false">Mostrar</button>
+        </div>
+        <small class="muted">Use ao menos 6 caracteres. Misture letras e números para mais segurança.</small>
+        <div id="passwordError" class="error" aria-live="polite"></div>
+      </div>
+
+      <div class="actions">
+        <button type="submit">Cadastrar</button>
+        <button type="button" id="resetBtn">Limpar</button>
+      </div>
+
+      <div id="result" role="status"></div>
+    </form>
+
+  </main>
+
+  <script>
+    const form = document.getElementById('signupForm');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const pwInput = document.getElementById('password');
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const pwError = document.getElementById('passwordError');
+    const result = document.getElementById('result');
+    const toggle = document.getElementById('togglePw');
+    const resetBtn = document.getElementById('resetBtn');
+
+    toggle.addEventListener('click', () => {
+      const isHidden = pwInput.type === 'password';
+      pwInput.type = isHidden ? 'text' : 'password';
+      toggle.textContent = isHidden ? 'Ocultar' : 'Mostrar';
+      toggle.setAttribute('aria-pressed', String(isHidden));
+    });
+
+    resetBtn.addEventListener('click', () => {
+      form.reset();
+      nameError.textContent = '';
+      emailError.textContent = '';
+      pwError.textContent = '';
+      result.textContent = '';
+      result.className = '';
+    });
+
+    function validate() {
+      let valid = true;
+      nameError.textContent = '';
+      emailError.textContent = '';
+      pwError.textContent = '';
+
+      if (nameInput.value.trim().length < 2) {
+        nameError.textContent = 'Por favor informe seu nome completo.';
+        valid = false;
+      }
+
+      if (!emailInput.checkValidity()) {
+        emailError.textContent = 'Por favor informe um e‑mail válido.';
+        valid = false;
+      }
+
+      if (pwInput.value.length < 6) {
+        pwError.textContent = 'A senha precisa ter ao menos 6 caracteres.';
+        valid = false;
+      }
+
+      return valid;
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+
+      // Exemplo de envio local — aqui você chamaria sua API
+      const payload = {
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        password: pwInput.value
+      };
+
+      // Simula requisição
+      result.className = 'success';
+      result.textContent = 'Cadastro realizado com sucesso (simulação). Confira no console.';
+      console.log('Payload de cadastro:', payload);
+
+    });
+  </script>
+</body>
+</html>
