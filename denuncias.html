@@ -1,335 +1,193 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Página de Denúncias — Proliferação da Dengue</title>
-  <meta name="description" content="Formulário para denunciar focos de Aedes aegypti. Dados encaminhados para a equipe local de combate à dengue." />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dengue: Proliferação do Mosquito - Denúncias</title>
   <style>
-    :root{
-      --bg:#f6fbf9;
-      --card:#ffffff;
-      --accent:#047857;
-      --muted:#6b7280;
-      --danger:#dc2626;
-      font-family: Inter, system-ui, -apple-system, "Helvetica Neue", Arial;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:linear-gradient(180deg,var(--bg),#eaf7ef 60%);
-      color:#04282b;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      padding:24px;
-      display:flex;
-      justify-content:center;
-      min-height:100vh;
-      align-items:flex-start;
-    }
-    .container{
-      width:100%;
-      max-width:980px;
-      margin:24px;
-      display:grid;
-      grid-template-columns: 1fr 360px;
-      gap:20px;
-      align-items:start;
-    }
-    header.card{
-      grid-column:1/-1;
-      background:var(--card);
-      padding:18px;
-      border-radius:12px;
-      box-shadow:0 6px 18px rgba(3,7,18,0.06);
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:center;
-    }
-    header h1{margin:0;font-size:18px}
-    header p{margin:0;color:var(--muted);font-size:13px}
-
-    .card{
-      background:var(--card);
-      padding:18px;
-      border-radius:12px;
-      box-shadow:0 6px 18px rgba(3,7,18,0.06);
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background-color: #f4f6f9;
+      color: #222;
     }
 
-    form label{display:block;font-weight:600;font-size:13px;margin-bottom:6px}
-    input[type="text"], input[type="tel"], input[type="email"], textarea, select {
-      width:100%;
-      padding:10px 12px;
-      border-radius:8px;
-      border:1px solid #e6eef0;
-      font-size:14px;
-      outline:none;
+    /* Barra superior */
+    header {
+      background-color: #0d6efd;
+      color: white;
+      padding: 15px 0;
+      text-align: center;
     }
-    textarea{min-height:110px;resize:vertical}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .full{grid-column:1/-1}
-    .muted{color:var(--muted);font-size:13px;margin-top:8px}
-    .actions{display:flex;gap:10px;align-items:center;margin-top:12px}
-    button{
-      background:var(--accent);
-      color:white;
-      border:0;
-      padding:10px 14px;
-      border-radius:10px;
-      font-weight:700;
-      cursor:pointer;
-    }
-    button.secondary{
-      background:transparent;color:var(--accent);border:1px solid rgba(4,120,87,0.12);
-      font-weight:600;
-    }
-    .help{font-size:13px;color:var(--muted)}
-    .small{font-size:12px;color:var(--muted)}
-    .map-embed{
-      width:100%;
-      height:260px;
-      border-radius:8px;
-      border:1px dashed #cfe9df;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:var(--muted);
-      background:linear-gradient(180deg,#f8fffb,#ffffff);
-    }
-    .info-list{display:flex;flex-direction:column;gap:8px}
-    .info-item{display:flex;gap:10px;align-items:flex-start}
-    .badge{background:#ecfdf5;color:#065f46;padding:6px 8px;border-radius:8px;font-weight:700;font-size:12px}
 
-    .notice{background:#fff7ed;border-left:4px solid #f59e0b;padding:10px;border-radius:8px;color:#92400e;font-size:13px}
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
 
-    @media (max-width:900px){
-      .container{grid-template-columns:1fr; padding:0}
-      header h1{font-size:16px}
+    nav {
+      margin-top: 8px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Conteúdo principal */
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    main h2 {
+      color: #0d6efd;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      background-color: #0d6efd;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #0b5ed7;
+    }
+
+    /* Rodapé */
+    footer {
+      background-color: #0d6efd;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 50px;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <main class="container" id="main">
-    <header class="card" role="banner" aria-label="Cabeçalho da página">
+
+  <header>
+    <h1>Dengue: Proliferação do Mosquito</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="mapas.html">Mapas</a>
+      <a href="conscientizacao.html">Conscientização</a>
+      <a href="denuncias.html">Denúncias</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Formulário de Denúncia</h2>
+    <form id="formDenuncia">
       <div>
-        <h1>Denúncias — Focos de Aedes aegypti</h1>
-        <p>Ajude a comunidade: denuncie criadouros e locais com água parada.</p>
-      </div>
-      <div style="text-align:right">
-        <div class="small">Contato local</div>
-        <div style="font-weight:700">(64) 4002-0922</div>
-        <div class="small">E-mail: <a href="mailto:proliferacaodadengue@gmail.com">proliferacaodadengue@gmail.com</a></div>
-      </div>
-    </header>
-
-    <!-- Formulário de denúncia -->
-    <section class="card" aria-labelledby="form-title">
-      <h2 id="form-title" style="font-size:15px;margin:0 0 10px 0">Registrar denúncia</h2>
-
-      <form id="denunciaForm" novalidate>
-        <div class="row">
-          <div>
-            <label for="nome">Nome (opcional)</label>
-            <input id="nome" name="nome" type="text" placeholder="Seu nome ou deixar em branco">
-          </div>
-
-          <div>
-            <label for="telefone">Telefone (opcional)</label>
-            <input id="telefone" name="telefone" type="tel" placeholder="(xx) xxxxx-xxxx">
-          </div>
-        </div>
-
-        <div style="margin-top:12px">
-          <label for="email">E-mail para contato (opcional)</label>
-          <input id="email" name="email" type="email" placeholder="seu@exemplo.com">
-        </div>
-
-        <div class="row" style="margin-top:12px">
-          <div>
-            <label for="estado">Estado</label>
-            <select id="estado" name="estado" required>
-              <option value="">Selecione</option>
-              <option>Goiás</option>
-              <option>Distrito Federal</option>
-              <option>Outro</option>
-            </select>
-          </div>
-          <div>
-            <label for="cidade">Cidade / Bairro</label>
-            <input id="cidade" name="cidade" type="text" placeholder="Ex: Rio Verde / Centro" required>
-          </div>
-        </div>
-
-        <div style="margin-top:12px">
-          <label for="descricao">Descrição do problema</label>
-          <textarea id="descricao" name="descricao" required placeholder="Explique onde está o foco (ex.: poça d'água, caixa d'água aberta, entulho) — seja o mais específico possível."></textarea>
-        </div>
-
-        <div style="margin-top:12px" aria-hidden="false">
-          <label for="foto">Foto (opcional)</label>
-          <input id="foto" name="foto" type="file" accept="image/*">
-          <div class="small">A foto não será enviada automaticamente se abrir o ficheiro localmente — para envio real, implemente backend/serviço de armazenamento.</div>
-        </div>
-
-        <div class="row" style="margin-top:12px">
-          <div>
-            <label for="prioridade">Prioridade</label>
-            <select id="prioridade" name="prioridade" required>
-              <option value="">Selecione</option>
-              <option>Alta — água parada em escola/creche</option>
-              <option>Média — água acumulada em via pública</option>
-              <option>Baixa — água em propriedade privada, sem circulação</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="localizacao">Localização (opcional)</label>
-            <input id="localizacao" name="localizacao" type="text" placeholder="Ex: Rua das Flores, 123">
-          </div>
-        </div>
-
-        <div style="margin-top:12px" class="actions">
-          <button type="submit" id="btnEnviar">Enviar denúncia</button>
-          <button type="button" class="secondary" id="btnLimpar">Limpar</button>
-          <div class="muted" aria-live="polite" id="status">Todas as denúncias são encaminhadas para <strong>proliferacaodadengue@gmail.com</strong>.</div>
-        </div>
-
-        <div style="margin-top:12px" class="notice" role="note">
-          Atenção: este formulário funciona localmente. Ao clicar em "Enviar", será criado um e-mail pré-montado (mailto) para facilitar o envio ao time de combate à dengue. Para envio automático sem interação do usuário, é necessário implementar um serviço backend.
-        </div>
-      </form>
-    </section>
-
-    <!-- Lateral: mapa / informações -->
-    <aside class="card" aria-labelledby="aside-title">
-      <h3 id="aside-title" style="margin:0 0 10px 0;font-size:15px">Localizar e informar</h3>
-
-      <div class="map-embed" id="mapPlaceholder" role="region" aria-label="Mapa de localização">
-        <!-- Placeholder: substitua por um embed de mapa real (Google Maps / OpenStreetMap) -->
-        <div>
-          <div style="font-weight:700">Mapa (placeholder)</div>
-          <div class="small">Substitua por um iframe do Google Maps ou OpenStreetMap com uma chave/URL válida.</div>
-        </div>
+        <label for="nome">Nome completo:</label>
+        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
       </div>
 
-      <div style="margin-top:12px" class="info-list">
-        <div class="info-item">
-          <div class="badge">1</div>
-          <div>
-            <div style="font-weight:700">Linha direta</div>
-            <div class="small">(64) 4002-0922</div>
-          </div>
-        </div>
-
-        <div class="info-item">
-          <div class="badge">2</div>
-          <div>
-            <div style="font-weight:700">E-mail oficial</div>
-            <div class="small"><a href="mailto:proliferacaodadengue@gmail.com">proliferacaodadengue@gmail.com</a></div>
-          </div>
-        </div>
-
-        <div style="margin-top:10px" class="small">
-          Dicas rápidas para prevenção (resumo):
-          <ul>
-            <li>Inspecione e elimine água parada.</li>
-            <li>Mantenha caixas d'água bem fechadas.</li>
-            <li>Use telas e mantenha calhas limpas.</li>
-            <li>Converse com vizinhos e mobilize a comunidade.</li>
-          </ul>
-        </div>
-
-        <div style="margin-top:10px" class="small">
-          Fonte e material de apoio: <a href="https://xn--catlogorrpec-ebb.my.canva.site/dengue-prolifera-o-do-mosquito" target="_blank" rel="noopener">Dengue: Proliferação do mosquito</a>. :contentReference[oaicite:1]{index=1}
-        </div>
+      <div>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
       </div>
-    </aside>
+
+      <div>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" placeholder="Crie uma senha" required>
+      </div>
+
+      <div>
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado" required>
+          <option value="">Selecione o estado</option>
+          <option>Goiás</option>
+          <option>Distrito Federal</option>
+          <option>Minas Gerais</option>
+          <option>Outro</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" name="cidade" placeholder="Digite sua cidade" required>
+      </div>
+
+      <div>
+        <label for="rua">Rua:</label>
+        <input type="text" id="rua" name="rua" placeholder="Digite o nome da rua" required>
+      </div>
+
+      <div>
+        <label for="descricao">Descrição do problema:</label>
+        <textarea id="descricao" name="descricao" placeholder="Explique o local e o tipo de foco de dengue" required></textarea>
+      </div>
+
+      <button type="submit">Enviar Denúncia</button>
+    </form>
   </main>
 
+  <footer>
+    <p><strong>Contatos</strong><br>
+    Telefone: (64) 4002-0922<br>
+    E-mail: <a href="mailto:proliferacaodadengue@gmail.com">proliferacaodadengue@gmail.com</a></p>
+    <p>&copy; 2025 | Projeto de Conscientização sobre Dengue</p>
+  </footer>
+
   <script>
-    // Comportamento do formulário:
-    (function(){
-      const form = document.getElementById('denunciaForm');
-      const btnLimpar = document.getElementById('btnLimpar');
-      const status = document.getElementById('status');
-
-      function validateForm(){
-        const required = ['estado','cidade','descricao','prioridade'];
-        for(const id of required){
-          const el = document.getElementById(id);
-          if(!el || !el.value.trim()) return false;
-        }
-        return true;
-      }
-
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if(!validateForm()){
-          alert('Por favor, preencha os campos obrigatórios: Estado, Cidade/Bairro, Descrição e Prioridade.');
-          return;
-        }
-
-        // Preparar corpo do email
-        const data = {
-          nome: form.nome.value || 'Anônimo',
-          telefone: form.telefone.value || '',
-          email: form.email.value || '',
-          estado: form.estado.value,
-          cidade: form.cidade.value,
-          localizacao: form.localizacao.value || '',
-          prioridade: form.prioridade.value,
-          descricao: form.descricao.value,
-          foto: form.foto.value ? '(foto anexada localmente)' : '(sem foto)'
-        };
-
-        const subject = encodeURIComponent('Denúncia: possível foco de dengue (' + data.cidade + ')');
-        const bodyLines = [
-          'Nome: ' + data.nome,
-          'Telefone: ' + data.telefone,
-          'E-mail: ' + data.email,
-          'Estado: ' + data.estado,
-          'Cidade / Bairro: ' + data.cidade,
-          'Endereço / Localização: ' + data.localizacao,
-          'Prioridade: ' + data.prioridade,
-          '',
-          'Descrição:',
-          data.descricao,
-          '',
-          'Observação: ' + data.foto,
-          '',
-          'Enviado via formulário local — favor registrar e averiguar.'
-        ];
-        const body = encodeURIComponent(bodyLines.join('\n'));
-
-        // Endereço do PDF / contato retirado do arquivo que você enviou
-        const to = 'proliferacaodadengue@gmail.com';
-
-        // Gera mailto (aperta OK para abrir seu cliente de e-mail)
-        const mailto = `mailto:${to}?subject=${subject}&body=${body}`;
-        // Abre mail client
-        window.location.href = mailto;
-
-        // Também salva localmente (apenas para histórico do navegador)
-        const history = JSON.parse(localStorage.getItem('denuncias_history') || '[]');
-        history.unshift({...data, ts: new Date().toISOString()});
-        localStorage.setItem('denuncias_history', JSON.stringify(history.slice(0,50)));
-
-        status.textContent = 'E-mail preparado. Verifique seu cliente de e-mail para enviar a denúncia.';
-      });
-
-      btnLimpar.addEventListener('click', () => {
-        if(confirm('Limpar todos os campos do formulário?')) form.reset();
-      });
-
-      // A11y: permite envio por Enter em campos quando focado (exceto textarea)
-      Array.from(form.querySelectorAll('input:not([type="file"]), select')).forEach(el => {
-        el.addEventListener('keydown', (ev) => {
-          if(ev.key === 'Enter') ev.preventDefault();
-        });
-      });
-    })();
+    document.getElementById("formDenuncia").addEventListener("submit", function(e){
+      e.preventDefault();
+      alert("Denúncia enviada com sucesso! Obrigado por colaborar na luta contra a dengue.");
+      this.reset();
+    });
   </script>
+
 </body>
 </html>
