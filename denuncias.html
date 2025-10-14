@@ -14,29 +14,31 @@
 
     /* Barra superior */
     header {
-      background-color: #0d6efd;
+      background-color: #0078d7;
       color: white;
-      padding: 15px 0;
+      padding: 20px;
       text-align: center;
     }
 
-    header h1 {
+    nav ul {
+      list-style: none;
+      padding: 0;
       margin: 0;
-      font-size: 22px;
     }
 
-    nav {
-      margin-top: 8px;
+    nav ul li {
+      display: inline-block;
+      margin: 0 15px;
     }
 
-    nav a {
+    nav ul li a {
       color: white;
       text-decoration: none;
-      margin: 0 15px;
       font-weight: bold;
+      transition: 0.3s;
     }
 
-    nav a:hover {
+    nav ul li a:hover, .active {
       text-decoration: underline;
     }
 
@@ -96,17 +98,19 @@
 
     /* Rodapé */
     footer {
-      background-color: #0d6efd;
+      background-color: #0078d7;
       color: white;
       text-align: center;
-      padding: 20px 0;
-      margin-top: 50px;
+      padding: 20px;
+      margin-top: 30px;
     }
 
     footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+    .cont{
       color: white;
-      text-decoration: none;
-      font-weight: bold;
     }
 
     footer a:hover {
@@ -160,10 +164,10 @@
   </main>
 
   <footer>
-    <p><strong>Contatos</strong><br>
-    Telefone: (64) 4002-0922<br>
-    E-mail: <a href="mailto:proliferacaodadengue@gmail.com">proliferacaodadengue@gmail.com</a></p>
-    <p>&copy; 2025 | Projeto de Conscientização sobre Dengue</p>
+    <h2 class="cont">Contatos</h2>
+    <p><strong>Telefone:</strong> (64) 4002-0922</p>
+    <p><strong>E-mail:</strong> proliferacaodadengue@gmail.com</p>
+    <p class="copy">&copy; 2025 | Projeto de Conscientização sobre Dengue</p>
   </footer>
 
   <script>
