@@ -11,37 +11,61 @@
     line-height: 1.6;
   }
   
-  header {
-    background-color: #0d6efd;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  }
-  
-  header h1 {
-    margin-bottom: 10px;
-    font-size: 1.8em;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-  
-  nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-  }
-  
-  nav a:hover {
-    text-decoration: underline;
-  }
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+}
+
+header h1 {
+  font-size: 1.8em;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  margin: 0;
+}
+
+header {
+  background-color: #0d6efd;
+  color: white;
+  padding: 15px 10px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Mantém o menu bonito abaixo da logo */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav a.active {
+  text-decoration: underline;
+  color: #ffeb3b;
+}
+
   
   .section {
     padding: 40px 20px;
