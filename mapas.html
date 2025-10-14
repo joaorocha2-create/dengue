@@ -1,56 +1,102 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mapas | Dengue: Proliferação do Mosquito</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa Interativo — Focos da Dengue em Goiás</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css"/>
+<style>
+  html, body, #map { height: 100%; margin: 0; }
+  body { font-family: Arial, sans-serif; }
+  header { background: #d10c0c; color: white; padding: 12px; text-align: center; font-size: 20px; }
+  .legend { position: absolute; bottom: 20px; left: 20px; background: white; padding: 10px; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); font-size: 14px; z-index: 1000; }
+  .legend div { margin-bottom: 5px; display: flex; align-items: center; }
+  .legend span { display: inline-block; width: 20px; height: 20px; margin-right: 5px; }
+  .denuncia { position: absolute; top: 60px; right: 20px; background: white; padding: 10px; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); width: 250px; font-size: 14px; z-index: 1000; overflow-y: auto; max-height: 300px; }
+  .popup-form { display: flex; flex-direction: column; gap: 5px; }
+  .popup-form input, .popup-form select, .popup-form textarea, .popup-form button { padding: 5px; font-size: 12px; }
+</style>
 </head>
 <body>
+<header>Mapa Interativo — Focos da Dengue em Goiás</header>
+<div id="map"></div>
+<div class="legend">
+  <div><span style="background:#00ff00"></span> Baixa</div>
+  <div><span style="background:#ffff00"></span> Média</div>
+  <div><span style="background:#ff0000"></span> Alta</div>
+</div>
+<div class="denuncia">
+  <strong>Denúncias no Mapa:</strong>
+  <ul id="lista-denuncias" style="padding-left: 15px; margin-top: 5px;"></ul>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+<script>
+const map = L.map('map').setView([-16.64, -49.26], 7);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
 
-  <header>
-    <h1>Dengue: Proliferação do Mosquito</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="mapas.html" class="active">Mapas</a></li>
-        <li><a href="conscientizacao.html">Conscientização</a></li>
-        <li><a href="denuncias.html">Denúncias</a></li>
-      </ul>
-    </nav>
-  </header>
+const drawnItems = new L.FeatureGroup().addTo(map);
+const listaDenuncias = document.getElementById('lista-denuncias');
 
-  <main class="section">
-    <h2>Mapas de Casos de Dengue no Brasil</h2>
-    <p>
-      Acompanhe os dados atualizados sobre os casos de dengue em diferentes regiões do país.
-      O mapa abaixo é fornecido pelo projeto <strong>InfoDengue</strong>, desenvolvido pela Fiocruz,
-      que monitora e divulga alertas sobre o avanço da doença.
-    </p>
+function getColor(level){
+  switch(level){
+    case 'baixa': return '#00ff00';
+    case 'média': return '#ffff00';
+    case 'alta': return '#ff0000';
+    default: return '#808080';
+  }
+}
 
-    <div class="map-container">
-      <iframe 
-        src="https://info.dengue.mat.br/" 
-        width="100%" 
-        height="500" 
-        style="border:0;" 
-        loading="lazy"
-        title="Mapa de casos de dengue - InfoDengue">
-      </iframe>
-    </div>
+function atualizarListaDenuncias(){
+  listaDenuncias.innerHTML = '';
+  drawnItems.eachLayer(layer => {
+    if(layer.options.info){
+      const li = document.createElement('li');
+      li.textContent = `Data: ${layer.options.info.data}, Nível: ${layer.options.info.nivel}, Motivo: ${layer.options.info.motivo}`;
+      listaDenuncias.appendChild(li);
+    }
+  });
+}
 
-    <p class="map-info">
-      🔗 Fonte: <a href="https://info.dengue.mat.br/" target="_blank">InfoDengue (Fiocruz)</a><br>
-      Última atualização em tempo real conforme os dados oficiais do Ministério da Saúde.
-    </p>
-  </main>
+const drawControl = new L.Control.Draw({
+  edit: { featureGroup: drawnItems },
+  draw: { marker:false, polyline:false, circle:false, circlemarker:false, rectangle:true, polygon:true }
+});
+map.addControl(drawControl);
 
-  <footer>
-    <h2>Contatos</h2>
-    <p><strong>Telefone:</strong> (64) 4002-0922</p>
-    <p><strong>E-mail:</strong> proliferacaodadengue@gmail.com</p>
-    <p class="copy">&copy; 2025 | Projeto de Conscientização sobre Dengue</p>
-  </footer>
+map.on(L.Draw.Event.CREATED, function(e){
+  const layer = e.layer;
 
+  const formHtml = `<div class='popup-form'>
+    <label>Nível do Foco:</label>
+    <select id='nivel'>
+      <option value='baixa'>Baixa</option>
+      <option value='média'>Média</option>
+      <option value='alta'>Alta</option>
+    </select>
+    <label>Motivo:</label>
+    <textarea id='motivo' rows='2' placeholder='Informe o motivo'></textarea>
+    <label>Data:</label>
+    <input type='date' id='data' value='${new Date().toISOString().slice(0,10)}'>
+    <button id='salvar'>Salvar</button>
+  </div>`;
+
+  layer.bindPopup(formHtml).openPopup();
+  drawnItems.addLayer(layer);
+
+  layer.on('popupopen', function(){
+    document.getElementById('salvar').onclick = function(){
+      const nivel = document.getElementById('nivel').value;
+      const motivo = document.getElementById('motivo').value || 'Sem descrição';
+      const data = document.getElementById('data').value;
+      layer.setStyle({ color: getColor(nivel), fillOpacity: 0.5 });
+      layer.options.info = { nivel, motivo, data };
+      atualizarListaDenuncias();
+      layer.bindPopup(`<strong>Foco da Dengue</strong><br>Data: ${data}<br>Nível: ${nivel}<br>Motivo: ${motivo}<br><br><a href='mailto:julio.oliveira1@estudante.ifgoiano.edu.br?subject=Denúncia Foco Dengue&body=Data:${data}%0ANível:${nivel}%0AMotivo:${encodeURIComponent(motivo)}' target='_blank'>Enviar por e-mail</a>`).openPopup();
+    };
+  });
+});
+</script>
 </body>
 </html>
