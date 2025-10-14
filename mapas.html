@@ -9,17 +9,47 @@
 <style>
   html, body, #map { height: 100%; margin: 0; }
   body { font-family: Arial, sans-serif; }
-  header { background: #d10c0c; color: white; padding: 12px; text-align: center; font-size: 20px; }
+  header { background: #d10c0c; color: white; padding: 12px; text-align: center; font-size: 20px; position: relative; }
+
+  /* Botões superiores */
+  .top-buttons {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    display: flex;
+    gap: 10px;
+    z-index: 1001;
+  }
+
+  .top-buttons button {
+    background: #2b6cb0;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+
   .legend { position: absolute; bottom: 20px; left: 20px; background: white; padding: 10px; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); font-size: 14px; z-index: 1000; }
   .legend div { margin-bottom: 5px; display: flex; align-items: center; }
   .legend span { display: inline-block; width: 20px; height: 20px; margin-right: 5px; }
-  .denuncia { position: absolute; top: 60px; right: 20px; background: white; padding: 10px; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); width: 250px; font-size: 14px; z-index: 1000; overflow-y: auto; max-height: 300px; }
+
+  .denuncia { position: absolute; top: 80px; right: 20px; background: white; padding: 10px; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); width: 250px; font-size: 14px; z-index: 1000; overflow-y: auto; max-height: 300px; }
   .popup-form { display: flex; flex-direction: column; gap: 5px; }
   .popup-form input, .popup-form select, .popup-form textarea, .popup-form button { padding: 5px; font-size: 12px; }
 </style>
 </head>
 <body>
-<header>Mapa Interativo — Focos da Dengue em Goiás</header>
+<header>
+  Mapa Interativo — Focos da Dengue em Goiás
+  <div class="top-buttons">
+    <button onclick="window.location.href='index.html'">🏠 Voltar</button>
+    <button id="adminToggle">Acessar como adm</button>
+  </div>
+</header>
+
 <div id="map"></div>
 <div class="legend">
   <div><span style="background:#00ff00"></span> Baixa</div>
@@ -30,11 +60,18 @@
   <strong>Denúncias no Mapa:</strong>
   <ul id="lista-denuncias" style="padding-left: 15px; margin-top: 5px;"></ul>
 </div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
 <script>
+const ADMIN_PASS = "1234"; // troque a senha
+let isAdmin = false;
+
 const map = L.map('map').setView([-16.64, -49.26], 7);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '© OpenStreetMap'
+}).addTo(map);
 
 const drawnItems = new L.FeatureGroup().addTo(map);
 const listaDenuncias = document.getElementById('lista-denuncias');
@@ -63,11 +100,46 @@ const drawControl = new L.Control.Draw({
   edit: { featureGroup: drawnItems },
   draw: { marker:false, polyline:false, circle:false, circlemarker:false, rectangle:true, polygon:true }
 });
-map.addControl(drawControl);
 
+// Funções de modo visualização e admin
+function enableViewMode() {
+  removeDrawControl();
+  document.getElementById('adminToggle').textContent = 'Acessar como adm';
+  isAdmin = false;
+}
+
+function enableAdminMode() {
+  map.addControl(drawControl);
+  document.getElementById('adminToggle').textContent = 'Sair do modo adm';
+  isAdmin = true;
+}
+
+function removeDrawControl() {
+  const controls = document.querySelectorAll('.leaflet-control-draw');
+  controls.forEach(el => el.remove());
+}
+
+// Ao clicar no botão admin
+document.getElementById('adminToggle').addEventListener('click', () => {
+  if (!isAdmin) {
+    const pass = prompt("Digite a senha de administrador:");
+    if (pass === ADMIN_PASS) {
+      enableAdminMode();
+      alert("Modo administrador ativado!");
+    } else if (pass !== null) {
+      alert("Senha incorreta!");
+    }
+  } else {
+    enableViewMode();
+    alert("Saindo do modo administrador.");
+  }
+});
+
+// Evento de criação (somente quando admin)
 map.on(L.Draw.Event.CREATED, function(e){
-  const layer = e.layer;
+  if (!isAdmin) return;
 
+  const layer = e.layer;
   const formHtml = `<div class='popup-form'>
     <label>Nível do Foco:</label>
     <select id='nivel'>
@@ -97,6 +169,9 @@ map.on(L.Draw.Event.CREATED, function(e){
     };
   });
 });
+
+// Começa no modo visualização
+enableViewMode();
 </script>
 </body>
 </html>
