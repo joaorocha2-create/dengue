@@ -18,31 +18,12 @@
       color: white;
       padding: 20px;
       text-align: center;
-      position: relative;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .logo-container img {
-      height: 50px;
-    }
-
-    .site-name {
-      font-size: 24px;
-      font-weight: bold;
-      color: white;
     }
 
     nav ul {
       list-style: none;
       padding: 0;
-      margin: 10px 0 0 0;
+      margin: 0;
     }
 
     nav ul li {
@@ -99,17 +80,11 @@
       margin-top: 30px;
     }
 
-    footer .logo-container {
-      justify-content: center;
-      margin-bottom: 15px;
-    }
-
     footer a {
       color: #fff;
       text-decoration: underline;
     }
-
-    .cont {
+    .cont{
       color: white;
     }
   </style>
@@ -117,10 +92,6 @@
 <body>
 
   <header>
-    <div class="logo-container">
-      <img src="logo.png" alt="Logo do site InfoDengue">
-      <span class="site-name">InfoDengue</span>
-    </div>
     <h1>Dengue: Proliferação do Mosquito</h1>
     <nav>
       <ul>
@@ -133,14 +104,65 @@
   </header>
 
   <main>
-    <!-- CONTEÚDO MANTIDO COMO ESTAVA -->
+    <h2>O que é a Dengue?</h2>
+    <p>
+      A dengue é uma doença viral transmitida pelo mosquito <strong>Aedes aegypti</strong>. 
+      Seus sintomas mais comuns incluem febre alta, dores musculares e nas articulações, 
+      dor de cabeça intensa e manchas vermelhas na pele. Em casos graves, pode evoluir para 
+      dengue hemorrágica, que pode levar à morte se não houver atendimento adequado.
+    </p>
+
+    <h2>Os Sorotipos da Dengue</h2>
+    <figure>
+      <img src="dengue_sorotipos.jpeg" alt="Imagem dos sorotipos da dengue">
+      <figcaption>Figura: Sorotipos da Dengue — DENV-1, DENV-2, DENV-3 e DENV-4</figcaption>
+    </figure>
+    <p>
+      A dengue não é causada por um único vírus, mas por quatro sorotipos diferentes: 
+      <strong>DENV-1</strong>, <strong>DENV-2</strong>, <strong>DENV-3</strong> e <strong>DENV-4</strong>. 
+      Cada sorotipo pode infectar uma pessoa, e a imunidade contra um não protege contra os outros. 
+      Isso significa que é possível ter dengue várias vezes.
+    </p>
+
+    <p>
+      Quando uma pessoa é infectada pelo primeiro sorotipo, os sintomas podem variar de leves a graves. 
+      Se ela for infectada por outro sorotipo depois, o risco de complicações aumenta, podendo resultar em 
+      dengue hemorrágica.
+    </p>
+
+    <h2>Como a Dengue se Propaga no Brasil</h2>
+    <figure>
+      <img src="ciclo_dengue.jpeg" alt="Ciclo de transmissão da dengue">
+      <figcaption>Figura: Ciclo de Transmissão da Dengue</figcaption>
+    </figure>
+    <p>
+      O mosquito transmissor se reproduz em água parada, encontrada em recipientes como pneus, vasos de plantas, garrafas e caixas d’água. 
+      O crescimento urbano desordenado, o acúmulo de lixo e a falta de saneamento básico favorecem a proliferação do 
+      <strong>Aedes aegypti</strong>, tornando o Brasil um dos países mais afetados pela doença.
+    </p>
+
+    <h2>Situação Atual no Brasil</h2>
+    <p>
+      O Brasil registra milhares de casos todos os anos, com surtos mais intensos nas regiões Sudeste e Centro-Oeste. 
+      Estados como <strong>São Paulo</strong>, <strong>Minas Gerais</strong>, <strong>Goiás</strong> e <strong>Mato Grosso</strong> 
+      estão entre os mais afetados. Crianças, idosos e pessoas com doenças crônicas são os grupos mais vulneráveis.
+    </p>
+
+    <ul>
+      <li><strong>2024:</strong> Mais de 1 milhão de casos suspeitos registrados.</li>
+      <li><strong>Estados mais afetados:</strong> São Paulo, Minas Gerais, Goiás e Mato Grosso.</li>
+      <li><strong>Grupos de risco:</strong> Crianças, idosos e pessoas com doenças crônicas.</li>
+    </ul>
+
+    <h2>Impacto da Dengue</h2>
+    <p>
+      Além de comprometer a saúde da população, a dengue sobrecarrega hospitais e serviços de saúde, 
+      causa faltas no trabalho e gera gastos públicos significativos em campanhas de combate ao mosquito. 
+      A presença de diferentes sorotipos aumenta o desafio de controlar a doença e proteger a população.
+    </p>
   </main>
 
   <footer>
-    <div class="logo-container">
-      <img src="logo.png" alt="Logo do site InfoDengue">
-      <span class="site-name">InfoDengue</span>
-    </div>
     <h2 class="cont">Contatos</h2>
     <p><strong>Telefone:</strong> (64) 4002-0922</p>
     <p><strong>E-mail:</strong> proliferacaodadengue@gmail.com</p>
